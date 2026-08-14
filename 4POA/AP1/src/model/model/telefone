@@ -1,0 +1,26 @@
+import java.io.Serializable;
+
+
+public class Telefone implements Serializable {
+    private String ddd;
+    private String numero;
+    private String tipo;
+
+    public Telefone(String ddd, String numero, String tipo) {
+        this.ddd = ddd;
+        this.numero = numero;
+        this.tipo = tipo;
+    }
+
+    public String formatar() {
+        return "(" + ddd + ") " + numero;
+    }
+
+    public boolean ehValido() {
+        return numero != null && !numero.isEmpty();
+    }
+
+    public void marcarComoPrincipal() {
+        
+    }
+}

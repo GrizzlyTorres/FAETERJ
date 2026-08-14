@@ -1,0 +1,39 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+
+public class GerenciadorLog {
+    
+    public static void registrarLog(String caminho, String mensagem) {
+        try {
+            FileWriter escrita = new FileWriter(caminho, true);
+            BufferedWriter bwEscrita = new BufferedWriter(escrita);
+            bwEscrita.write(mensagem);
+            bwEscrita.newLine();
+            bwEscrita.close();
+            escrita.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void imprimirLog(String caminho) {
+        try {
+            FileReader leitura = new FileReader(caminho);
+            BufferedReader brLeitura = new BufferedReader(leitura);
+            while (brLeitura.ready()) {
+                String str = brLeitura.readLine();
+                System.out.println(str);
+            }
+            brLeitura.close();
+            leitura.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}

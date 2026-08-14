@@ -1,0 +1,56 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+public class Principal {
+    public static void main(String[] args) {
+        String dirSer = "c:/a/";
+        String arquivoSer = dirSer + "clara.ser";
+        String arquivoLog = "c:/teste/arq.txt";
+
+        Pessoa p = new Pessoa("Clara", 30, "99999", "clara@email.com");
+        p.adicionarTelefone(new Telefone("21", "999998888", "Celular"));
+        
+        GerenciadorLog.registrarLog(arquivoLog, "Novo objeto Pessoa criado: " + p.getNome());
+
+        try {
+            File f = new File(dirSer);
+            if (!f.exists()) f.mkdir();
+
+            // 2. Serializando o objeto
+            FileOutputStream arqOSer = new FileOutputStream(arquivoSer);
+            ObjectOutputStream oOSer = new ObjectOutputStream(arqOSer);
+            oOSer.writeObject(p);
+            oOSer.close();
+            
+            GerenciadorLog.registrarLog(arquivoLog, "Objeto serializado com sucesso em " + arquivoSer);
+            
+            System.out.println("---------------Antes de recuperar-------------");
+            System.out.println(p);
+
+            FileInputStream arqISer = new FileInputStream(arquivoSer);
+            ObjectInputStream iOSer = new ObjectInputStream(arqISer);
+            Pessoa pessoaRecuperada = (Pessoa) iOSer.readObject();
+            iOSer.close();
+            
+            GerenciadorLog.registrarLog(arquivoLog, "Objeto desserializado e recuperado do disco.");
+
+            System.out.println("---------------Depois de recuperar os valores-------------");
+            System.out.println(pessoaRecuperada); // O CPF será exibido como 'null' por causa do transient
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("\n---------------Log de Ações-------------");
+        GerenciadorLog.imprimirLog(arquivoLog);
+    }
+}
