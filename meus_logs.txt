@@ -1,0 +1,6 @@
+[16/08/2026 16:17:25] INFO: Iniciando a execução do programa.
+[16/08/2026 16:17:25] INFO: Objeto Pessoa criado na memória: Carlos Silva
+[16/08/2026 16:17:25] INFO: Objeto Pessoa foi SERIALIZADO com sucesso no arquivo dados_pessoa.ser
+[16/08/2026 16:17:25] INFO: Objeto Pessoa foi DESSERIALIZADO com sucesso.
+[16/08/2026 16:17:25] INFO: Fim da execução do programa.
+
