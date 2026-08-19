@@ -1,0 +1,2 @@
+[19/08/2026 16:30:06] INFO: Novo imóvel cadastrado: Imóvel [Apartamento] - Área: 65.5m² | Valor Estimado: R$393000.0
+Endereço: Rua das Flores, 123 - CEP: 20000-000
